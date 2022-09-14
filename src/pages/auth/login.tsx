@@ -4,7 +4,8 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useAuth } from '../../firebase/firebaseContext';
 
 const Login = () => {
-  const {signIn} = useAuth()
+  const {signIn, currentUser} = useAuth()
+  console.log(currentUser)
   const doSignIn = () => {
     signIn()
   }
