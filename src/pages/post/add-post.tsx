@@ -8,16 +8,16 @@ import { ref, getDownloadURL, uploadString } from '@firebase/storage'
 const PostForm = () => {
   const {currentUser} = useAuth()
   const { register, handleSubmit, watch, formState: { errors } } = useForm()
-  const [file, setFile] = useState(" ")
+  const [file, setFile] = useState<any | null>(null);
   const fileRef = useRef(null)
 
   const addImageToPost = (e) => {
     const rd = new FileReader()
-    console.log(rd.readAsDataURL(e.target.files[0]))
+    rd.readAsDataURL(e.target.files[0])
     rd.onload = (readerEvent) => {
-      setFile(readerEvent.target.result)
+      console.log(readerEvent?.target?.result)
+      setFile(readerEvent?.target?.result)
     }
-    console.log(file)
   }
 
   const uploadPost = async (data: any) => {
@@ -30,13 +30,13 @@ const PostForm = () => {
     })
     const imageRef = ref(storage, `posts/${docRef.id}/image`)
     await uploadString(imageRef, file, "data_url").then(async ss => {
+      console.log(file)
       const downloadurl = await getDownloadURL(imageRef)
       await updateDoc(doc(db, 'posts', docRef.id), {
         photoUrl: downloadurl
       })
     })
   }
-
     return (
         <div>
             <form className="flex flex-col w-60 mt-20" onSubmit={handleSubmit(uploadPost)}>
