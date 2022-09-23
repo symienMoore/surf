@@ -29,13 +29,13 @@ const PostForm = () => {
       timestamp: serverTimestamp()
     })
     const imageRef = ref(storage, `posts/${docRef.id}/image`)
-    await uploadString(imageRef, file, "data_url").then(async ss => {
-      console.log(file)
+    await uploadString(imageRef, file, "data_url").then(async () => {
       const downloadurl = await getDownloadURL(imageRef)
       await updateDoc(doc(db, 'posts', docRef.id), {
         photoUrl: downloadurl
-      })
-    })
+      });
+    });
+    setFile(null)
   }
     return (
         <div>

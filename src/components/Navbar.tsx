@@ -2,15 +2,27 @@ import Link from 'next/link'
 import { useAuth } from '../firebase/firebaseContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare, faPlane, faPlaneCircleCheck, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons'
+import { useState } from 'react'
 
 const Navbar = () => {
     const {currentUser, signIn, logout} = useAuth()
+    const [sidebarOpen, setSidebarOpen] = useState(false)
+
+    const openSideMenu = () => {
+        if(sidebarOpen) {
+            setSidebarOpen(false)
+            console.log(sidebarOpen)
+        } else {
+            setSidebarOpen(true)
+            console.log(sidebarOpen)
+        }
+    }
     if(currentUser) {
         return (
           <div>
               <div className="navbar bg-base-100 border-b">
                   <div className="flex-none">
-                      <button className="btn btn-square btn-ghost">
+                      <button className="btn btn-square btn-ghost" onClick={openSideMenu}>
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-5 h-5 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                       </button>
                   </div>
