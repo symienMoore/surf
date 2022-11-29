@@ -14,28 +14,28 @@ const Home: NextPage = () => {
   const [posts, setPosts] = useState<any[]>([])
 
   useEffect(() => {
-    const unsubcribe = onSnapshot(
+    const subcribe = onSnapshot(
       query(collection(db, "posts"), orderBy("timestamp", "desc")),
       (snapshot) => {
         setPosts(snapshot.docs);
       }
       );
-      console.log(posts)
     return () => {
-      unsubcribe();
+      subcribe();
     };
   }, [db]);
   
   if(currentUser) {
     return (
-      <>
-      <div className="flex items-center">
-        <Image className="border rounded-full" src={currentUser.photoURL} height={100} width={100} alt=""/>
-        <h2 className="ml-5">Welcome {currentUser.displayName}</h2>
-      </div>
-        <div className="flex items-center flex-col">
+      <div className="relative">
+        <div className="flex items-center">
+          <Image className="border rounded-full" src={currentUser.photoURL} height={100} width={100} alt=""/>
+          <h2 className="ml-5">Welcome {currentUser.displayName}</h2>
+        </div>
+        <div className="flex items-center flex-col relative sticky top-0 left-0 right-0">
+          <div className="">
           {posts.map((post) => (
-            <div key={post.id} className="mt-5 rounded-lg shadow-md">
+            <div key={post.id} className="mt-20 rounded-lg shadow-md">
               <div className="flex mx-5 mt-5 mb-5 items-center">
                 <Image src={post.data().profile_pic} alt="" width={100} height={100} className="rounded-full px-3"/>
                 <Link href={{
@@ -57,9 +57,10 @@ const Home: NextPage = () => {
                 <h5>Comments</h5>
               </div>
             </div>
-        ))}
+            ))}
+          </div>
         </div>
-      </>
+      </div>
     );
   } else {
     return (
