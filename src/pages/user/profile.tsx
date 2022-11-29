@@ -17,7 +17,6 @@ const Profile = () => {
     //       })
     //   })
     // }, [])
-    
     const imgSrc = currentUser
     if(currentUser) {
       return (
