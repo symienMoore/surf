@@ -27,11 +27,14 @@ const Home: NextPage = () => {
     return (
       <>
         <h2>Welcome {currentUser.displayName}</h2>
-        <div>
+        <div className="flex items-center flex-col text-white">
           {posts.map((post) => (
-            <div key={post.id}>
-              <h5>{post.data().name}</h5>
-              <Image src={post.data().photoUrl} alt='' width={200} height={200}/>
+            <div key={post.id} className="bg-sky-300 mt-5">
+              <div className="flex mx-2">
+                <Image src={post.data().profile_pic} alt="" width={100} height={100} className="rounded-full"/>
+                <h5>{post.data().name}</h5>
+              </div>
+              <Image src={post.data().photoUrl} alt='' width={600} height={300}/>
               <h5>{post.data().data}</h5>
             </div>
         ))}

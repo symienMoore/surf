@@ -10,11 +10,10 @@ export const useAuth = () => {
 }
 
  export const AuthProvider = ({children}: any) => {
-    const [currentUser, setCurrentUser] = useState<any | null>(null)
+    const [currentUser, setCurrentUser] = useState<object>({})
     const [loading, setLoading] = useState(false)
     const userInfo = useRef()
     const auth = getAuth(firebase)
-
     function signIn(){
         const provider = new GoogleAuthProvider()
           signInWithPopup(auth, provider)

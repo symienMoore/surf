@@ -23,6 +23,7 @@ const PostForm = () => {
   const uploadPost = async (data: any) => {
     const docRef = await addDoc(collection(db, "posts"), {
       name: currentUser.displayName,
+      profile_pic: currentUser.photoURL,
       data: data.postBody,
       userId: currentUser.uid,
       photoUrl: '',

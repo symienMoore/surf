@@ -4,10 +4,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare, faPlane, faPlaneCircleCheck, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 
+
+const Sidebar = () => {
+    return (
+        <>
+            <p>I am a sidebar</p>
+        </>
+    )
+}
+
+
 const Navbar = () => {
     const {currentUser, signIn, logout} = useAuth()
-    const [sidebarOpen, setSidebarOpen] = useState(false)
-
+    const [sidebarOpen, setSidebarOpen] = useState<boolean>(false)
     const openSideMenu = () => {
         if(sidebarOpen) {
             setSidebarOpen(false)
@@ -74,6 +83,9 @@ const Navbar = () => {
                       </button>
                   </div> */}
               </div>
+              {sidebarOpen &&
+                <Sidebar/>
+              }
           </div>
         )
     } else {
