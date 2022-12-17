@@ -14,6 +14,7 @@ export const useAuth = () => {
     const [loading, setLoading] = useState(false)
     const userInfo = useRef()
     const auth = getAuth(firebase)
+    
     function signIn(){
         const provider = new GoogleAuthProvider()
           signInWithPopup(auth, provider)

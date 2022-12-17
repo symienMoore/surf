@@ -28,7 +28,7 @@ const Navbar = () => {
     }
     if(currentUser) {
         return (
-          <div>
+          <div className='relative'>
               <div className="navbar bg-base-100 border-b">
                   <div className="flex-none">
                       <button className="btn btn-square btn-ghost" onClick={openSideMenu}>
